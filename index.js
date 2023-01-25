@@ -4,20 +4,20 @@ const fs = require('fs');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
-// const renderTeam = require();
+const renderTeam = require('./src/createBand');
 
 const DIST_DIR = path.resolve(__dirname, 'dist');
 const distPath = path.join(DIST_DIR, 'index.html');
 
-const teamMembers = [];
-const addToTeam = [];
+const teamMembers = []; //bandMembers
+const addToTeam = []; // idsArray
 
 console.log("\nWelcome to the team generator!\nUse `npm run reset` to reset the dist/ folder\n");
 
 
-const questions = () => {
+const questions = () => { // appMenu
 
-    const createTeam = () => {
+    const createTeam = () => { // createBand
         inquirer.prompt([
             {
                 type: "list",
@@ -36,8 +36,8 @@ const questions = () => {
                     case "Manager":
                         createManager();
                         break;
-                    case "Non-manager":
-                        createNonManager();
+                    case "Engineer":
+                        createEngineer();
                         break;
                     default:
                         buildTeam(); // builds html file
@@ -83,7 +83,7 @@ const questions = () => {
                 );
                 teamMembers.push(manager);
                 addToTeam.push(response.managerId);
-                createTeam()
+                createTeam();
             });
     }
 
@@ -107,15 +107,30 @@ const questions = () => {
             {
                 type: "input",
                 name: "engineerGitHub",
-                message: "What is the engineer's GitHub?",
+                message: "What is the engineer's GitHub username?",
             },
         ])
+            .then((response) => {
+                const engineer = new Engineer(
+                    response.engineerName,
+                    response.engineerId,
+                    response.engineerEmail,
+                    response.engineerGitHub
+                );
+                teamMembers.push(engineer);
+                addToTeam.push(response.engineerId);
+                createTeam();
+            });
     }
-}
+    const buildTeam = () => {
+        if (!fs.existsSync(DIST_DIR)) {
+            fs.mkdirSync(DIST_DIR);
+        }
+        fs.writeFileSync(distPath, renderTeam(teamMembers), "utf-8");
+    };
 
-const buildTeam = () => {};
+    createTeam();
 
-// const addToTeam = () => {
-
+};
 
 questions();

@@ -33,6 +33,24 @@ const createTeam = (team) => {
         </div>      
         `;
     };
+
+    const createIntern = (intern) => {
+        return `
+        <div class=" col d-flex justify-content-center">
+            <div class="card" style="width: 18rem">
+                <div class="card-body">
+                    <ul class="list-group">
+                    <li class="list-group-item heading">${intern.getName()}</li>
+                    <i class="fa-solid fa-user">${intern.getRole()}</i>
+                    <li class="list-group-item">${intern.getId()}</li>
+                    <li class="list-group-item">${intern.getEmail()}</li>
+                    <li class="list-group-item">${intern.getSchool()}</li>
+                    </ul>
+                </div>
+            </div>  
+        </div>      
+        `;
+    };
     const html = [];
 
     html.push(
@@ -47,7 +65,14 @@ const createTeam = (team) => {
             .map((engineer) => createEngineer(engineer))
             .join("")
     );
+    html.push(
+        team
+            .filter((teamMember) => teamMember.getRole() === "Intern")
+            .map((intern) => createIntern(intern))
+            .join("")
+    );
     return html.join("");
+    
 };
 
 module.exports = (team) => {
@@ -62,7 +87,7 @@ module.exports = (team) => {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
     <link rel="'stylesheet" href="./styles/reset.css" />
-    <link rel="'stylesheet" href="./styles/style.css" />
+    <link rel="'stylesheet" href="./dist/styles/style.css" />
 
     <title>Team Profile Generator</title>
 </head>

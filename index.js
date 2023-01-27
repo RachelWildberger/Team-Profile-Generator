@@ -25,7 +25,6 @@ const questions = () => { // appMenu
                 message: "Which type of team member would you like to add?",
                 choices: [
                     "Manager",
-                    "Employee",
                     "Engineer",
                     "Intern",
                     "I don't want to add more team members"]
@@ -39,8 +38,11 @@ const questions = () => { // appMenu
                     case "Engineer":
                         createEngineer();
                         break;
+                    case "Intern":
+                        createIntern();
+                        break;
                     default:
-                        buildTeam(); // builds html file
+                        buildTeam();
                 }
             });
     }
@@ -122,6 +124,43 @@ const questions = () => { // appMenu
                 createTeam();
             });
     }
+
+    const createIntern = () => {
+        inquirer.prompt([
+            {
+                type: "input",
+                name: "internName",
+                message: "What is the intern's name?",
+            },
+            {
+                type: "input",
+                name: "internId",
+                message: "What is the intern's id?",
+            },
+            {
+                type: "input",
+                name: "internEmail",
+                message: "What is the intern's email?",
+            },
+            {
+                type: "input",
+                name: "internSchool",
+                message: "What is the intern's school name?",
+            },
+        ])
+            .then((response) => {
+                const intern = new Intern(
+                    response.internName,
+                    response.internId,
+                    response.internEmail,
+                    response.internSchool
+                );
+                teamMembers.push(intern);
+                addToTeam.push(response.internId);
+                createTeam();
+            });
+    }
+
     const buildTeam = () => {
         if (!fs.existsSync(DIST_DIR)) {
             fs.mkdirSync(DIST_DIR);

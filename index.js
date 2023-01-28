@@ -9,15 +9,15 @@ const renderTeam = require('./src/page-template');
 const DIST_DIR = path.resolve(__dirname, 'dist');
 const distPath = path.join(DIST_DIR, 'index.html');
 
-const teamMembers = []; //bandMembers
-const addToTeam = []; // idsArray
+const teamMembers = [];
+const addToTeam = [];
 
 console.log("\nWelcome to the team generator!\nUse `npm run reset` to reset the dist/ folder\n");
 
 
-const questions = () => { // appMenu
+const questions = () => {
 
-    const createTeam = () => { // createBand
+    const createTeam = () => {
         inquirer.prompt([
             {
                 type: "list",
@@ -53,12 +53,6 @@ const questions = () => { // appMenu
                 type: "input",
                 name: "managerName",
                 message: "What is the team manager's name?",
-                // validate: (answer) => {
-                //     if (answer !== "") {
-                //         return true;
-                //     }
-                //         return "You have to add a name for your team manager.";
-                // }
             },
             {
                 type: "input",

@@ -9,7 +9,7 @@ const createTeam = (team) => {
                     <li class="list-group-item heading">${manager.getName()}</li>
                     <li class="list-group-item">${manager.getRole()}</li> 
                     <li class="list-group-item">ID: ${manager.getId()}</li>
-                    <a href="mailto:email@example.com" class="list-group-item">Email: ${manager.getEmail()}</a>
+                    <a href="mailto:" class="list-group-item">Email: ${manager.getEmail()}</a>
                     <li class="list-group-item">Office number: ${manager.getOfficeNum()}</li>
                     </ul>
                 </div>
@@ -27,7 +27,7 @@ const createTeam = (team) => {
                     <li class="list-group-item heading">${engineer.getName()}</li>
                     <li  class="list-group-item">${engineer.getRole()}</li> 
                     <li class="list-group-item">ID: ${engineer.getId()}</li>
-                    <a href="mailto:email@example.com" class="list-group-item">Email: ${engineer.getEmail()}</a> 
+                    <a href="mailto:" class="list-group-item">Email: ${engineer.getEmail()}</a> 
                     <a href="https://github.com/" class="list-group-item">GitHub: ${engineer.getGitHub()}</a>
                     </ul>
                 </div>
@@ -47,7 +47,7 @@ const createTeam = (team) => {
                     <li class="list-group-item heading">${intern.getName()}</li>
                     <li  class="list-group-item">${intern.getRole()}</li> 
                     <li class="list-group-item">ID: ${intern.getId()}</li>
-                    <a href="mailto:email@example.com" class="list-group-item">Email: ${intern.getEmail()}</a> 
+                    <a href="mailto:" class="list-group-item">Email: ${intern.getEmail()}</a> 
                     <li class="list-group-item">${intern.getSchool()}</li>
 
                     </ul>
